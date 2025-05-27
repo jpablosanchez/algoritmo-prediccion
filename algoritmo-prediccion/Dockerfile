@@ -1,14 +1,12 @@
-# Imagen base con Java 17
-FROM eclipse-temurin:17-jdk-alpine
-
-# Directorio de trabajo en el contenedor
+# Etapa 1: construir el proyecto
+FROM maven:3.9.3-eclipse-temurin-17 AS build
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Copiar el archivo .jar al contenedor
-COPY target/algoritmo-prediccion-0.0.1-SNAPSHOT.jar app.jar
-
-# Exponer el puerto que usa Spring Boot
+# Etapa 2: ejecutar el jar compilado
+FROM eclipse-temurin:17-jdk-alpine
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
-
-# Ejecutar la app
 ENTRYPOINT ["java", "-jar", "app.jar"]
