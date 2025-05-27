@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analizador de Datos Inteligente</title>
+
+<!-- Fuentes de Google -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap"
+	rel="stylesheet">
+
+	<!-- Bootstrap 5 -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+
+
+	<!-- Iconos de Bootstrap -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+	<!-- MathJax -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async
+	src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	
+<link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="#"> <i
+				class="bi bi-bar-chart-line-fill me-2"></i>Analizador de Datos
+			</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNav">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item"><a class="nav-link active" href="#inicio">Inicio</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#arbol">Árbol
+							de Decisión</a></li>
+					<li class="nav-item"><a class="nav-link" href="#regresion">Regresión</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#kmedias">K-Medias</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#kmodas">K-Modas</a>
+					</li>
+					<li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a
+						th:href="@{/subir}" class="btn btn-primary btn-sm"> <i
+							class="bi bi-upload me-1"></i>Subir Archivo
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Hero Section -->
+	<section class="hero-section" id="inicio">
+		<div class="container text-center">
+			<h1 class="hero-title fade-in">Potencia tus datos con análisis
+				inteligente</h1>
+			<p class="hero-subtitle fade-in delay-1">Cuatro algoritmos
+				poderosos para resolver problemas predictivos en tus conjuntos de
+				datos</p>
+			<a href="#features"
+				class="btn btn-light btn-lg px-4 mt-3 fade-in delay-2"> <i
+				class="bi bi-arrow-down me-2"></i>Conoce más
+			</a>
+		</div>
+	</section>
+
+	<!-- Features Section -->
+	<section class="container mb-5" id="features">
+		<div class="row g-4">
+			<div class="col-md-6 col-lg-3 fade-in">
+				<div class="feature-card card h-100">
+					<div class="card-body text-center">
+						<div class="card-icon">
+							<i class="bi bi-diagram-3-fill"></i>
+						</div>
+						<h4>Árbol de Decisión</h4>
+						<p class="card-text">Predicción mediante clasificación lógica
+							con esquema visual del árbol de decisiones.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6 col-lg-3 fade-in delay-1">
+				<div class="feature-card card h-100">
+					<div class="card-body text-center">
+						<div class="card-icon">
+							<i class="bi bi-graph-up-arrow"></i>
+						</div>
+						<h4>Regresión</h4>
+						<p class="card-text">Ecuación matemática para predecir valores
+							numéricos con explicación paso a paso.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6 col-lg-3 fade-in delay-2">
+				<div class="feature-card card h-100">
+					<div class="card-body text-center">
+						<div class="card-icon">
+							<i class="bi bi-calculator-fill"></i>
+						</div>
+						<h4>K-Medias</h4>
+						<p class="card-text">Imputación de valores numéricos faltantes
+							usando promedios por grupo.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6 col-lg-3 fade-in delay-3">
+				<div class="feature-card card h-100">
+					<div class="card-body text-center">
+						<div class="card-icon">
+							<i class="bi bi-pie-chart-fill"></i>
+						</div>
+						<h4>K-Modas</h4>
+						<p class="card-text">Imputación de valores categóricos usando
+							la moda (valor más común) por grupo.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Algorithm Sections -->
+	<div class="container">
+		<!-- Decision Tree -->
+		<section class="algorithm-section fade-in" id="arbol">
+			<h2 class="algorithm-title">
+				<i class="bi bi-diagram-3-fill"></i>Árbol de Decisión
+			</h2>
+
+			<div class="row align-items-center">
+				<div class="col-lg-7">
+					<p class="lead">Un árbol de decisión divide los datos en ramas
+						basadas en los atributos más informativos, hasta llegar a una
+						predicción.</p>
+
+					<h5 class="mt-4">Pasos para construirlo:</h5>
+					<ol class="lead">
+						<li>Calcular la <strong>entropía</strong> del conjunto de
+							datos:
+						</li>
+						<div class="math-formula">$$ Entropía(S) = -p_+ \log_2(p_+)
+							- p_- \log_2(p_-) $$</div>
+
+						<li>Evaluar la <strong>ganancia de información</strong> para
+							cada atributo:
+						</li>
+						<div class="math-formula">$$ Ganancia(S, A) = Entropía(S) -
+							\sum_{v \in Valores(A)} \frac{|S_v|}{|S|} Entropía(S_v) $$</div>
+
+						<li>Seleccionar el atributo con mayor ganancia y repetir el
+							proceso por rama.</li>
+					</ol>
+
+					<div class="mt-4">
+						<h5>Ejemplo de reglas extraídas:</h5>
+						<div class="bg-light p-3 rounded monospace">
+							<pre>Si Edad = Joven y Estudiante = Sí ⇒ Compra PC = Sí</pre>
+							<pre>Si Edad = Joven y Estudiante = No ⇒ Compra PC = No</pre>
+							<pre>Si Edad = Viejo y Crédito Bueno = Excelente ⇒ Compra PC = No</pre>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-5 mt-4 mt-lg-0">
+					<div class="table-responsive">
+						<table class="table data-table">
+							<thead>
+								<tr>
+									<th>Edad</th>
+									<th>Ingreso</th>
+									<th>Estudiante</th>
+									<th>Crédito Bueno</th>
+									<th>Compra PC</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Joven</td>
+									<td>Alto</td>
+									<td>No</td>
+									<td>Justo</td>
+									<td>No</td>
+								</tr>
+								<tr>
+									<td>Joven</td>
+									<td>Alto</td>
+									<td>No</td>
+									<td>Excelente</td>
+									<td>No</td>
+								</tr>
+								<tr>
+									<td>Medio</td>
+									<td>Alto</td>
+									<td>No</td>
+									<td>Justo</td>
+									<td>Sí</td>
+								</tr>
+								<tr>
+									<td>Viejo</td>
+									<td>Medio</td>
+									<td>No</td>
+									<td>Justo</td>
+									<td>Sí</td>
+								</tr>
+								<tr>
+									<td>Viejo</td>
+									<td>Bajo</td>
+									<td>Sí</td>
+									<td>Justo</td>
+									<td>Sí</td>
+								</tr>
+								<tr>
+									<td>Viejo</td>
+									<td>Bajo</td>
+									<td>Sí</td>
+									<td>Excelente</td>
+									<td>No</td>
+								</tr>
+								<tr>
+									<td>Medio</td>
+									<td>Bajo</td>
+									<td>Sí</td>
+									<td>Excelente</td>
+									<td>Sí</td>
+								</tr>
+								<tr>
+									<td>Joven</td>
+									<td>Medio</td>
+									<td>No</td>
+									<td>Justo</td>
+									<td>?</td>
+								</tr>
+								<tr>
+									<td>Joven</td>
+									<td>Bajo</td>
+									<td>Sí</td>
+									<td>Justo</td>
+									<td>?</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Linear Regression -->
+		<section class="algorithm-section fade-in" id="regresion">
+			<h2 class="algorithm-title">
+				<i class="bi bi-graph-up-arrow"></i>Regresión Lineal
+			</h2>
+
+			<div class="row align-items-center">
+				<div class="col-lg-7 order-lg-2">
+					<p class="lead">La regresión lineal encuentra una relación
+						entre variables para hacer predicciones mediante una ecuación
+						lineal:</p>
+
+					<div class="math-formula">$$ y = a + bx $$</div>
+
+					<ul class="lead">
+						<li><strong>x</strong>: variable independiente (ej. horas de
+							estudio)</li>
+						<li><strong>y</strong>: variable dependiente (ej. puntaje del
+							examen)</li>
+						<li><strong>a</strong>: intersección con el eje Y (constante)</li>
+						<li><strong>b</strong>: pendiente de la recta</li>
+					</ul>
+
+					<p class="lead">
+						Para calcular
+						<code>a</code>
+						y
+						<code>b</code>
+						:
+					</p>
+					<div class="math-formula">$$ b = \frac{n \sum xy - \sum x
+						\sum y}{n \sum x^2 - (\sum x)^2} $$ $$ a = \frac{\sum y - b \sum
+						x}{n} $$</div>
+
+					<p class="lead">Ejemplo con ecuación obtenida:</p>
+					<div class="math-formula">$$ y = 45 + 5x $$</div>
+
+					<div class="bg-light p-3 rounded monospace">
+						<pre>Para x = 6: y = 45 + 5×6 = 75</pre>
+						<pre>Para x = 7: y = 45 + 5×7 = 80</pre>
+					</div>
+				</div>
+
+				<div class="col-lg-5 order-lg-1 mt-4 mt-lg-0">
+					<div class="table-responsive">
+						<table class="table data-table">
+							<thead>
+								<tr>
+									<th>Horas de estudio</th>
+									<th>Puntaje examen</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>50</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>60</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>65</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>70</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>80</td>
+								</tr>
+								<tr>
+									<td>6</td>
+									<td>?</td>
+								</tr>
+								<tr>
+									<td>7</td>
+									<td>?</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Multiple Regression -->
+		<section class="algorithm-section fade-in">
+			<h2 class="algorithm-title">
+				<i class="bi bi-graph-up"></i>Regresión Múltiple
+			</h2>
+
+			<div class="row align-items-center">
+				<div class="col-lg-7">
+					<p class="lead">
+						Predice un valor
+						<code>y</code>
+						(ej. precio) en función de múltiples variables independientes:
+					</p>
+
+					<div class="math-formula">$$ y = a + b_1 x_1 + b_2 x_2 $$</div>
+
+					<ul class="lead">
+						<li><strong>x₁</strong>: tamaño (Size)</li>
+						<li><strong>x₂</strong>: número de habitaciones (Rooms)</li>
+						<li><strong>a</strong>, <strong>b₁</strong>, <strong>b₂</strong>:
+							coeficientes</li>
+					</ul>
+
+					<p class="lead">Los coeficientes se calculan resolviendo:</p>
+					<div class="math-formula">$$ \vec{B} = (X^T X)^{-1} X^T Y $$
+					</div>
+
+					<p class="lead">Ejemplo con ecuación obtenida:</p>
+					<div class="math-formula">$$ y = 50 + 0.9x_1 + 10x_2 $$</div>
+
+					<div class="bg-light p-3 rounded monospace">
+						<pre>Para x₁=150 y x₂=5: y = 50 + 0.9×150 + 10×5 = 235</pre>
+					</div>
+				</div>
+
+				<div class="col-lg-5 mt-4 mt-lg-0">
+					<div class="table-responsive">
+						<table class="table data-table">
+							<thead>
+								<tr>
+									<th>Size</th>
+									<th>Rooms</th>
+									<th>Price</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>50</td>
+									<td>1</td>
+									<td>100</td>
+								</tr>
+								<tr>
+									<td>60</td>
+									<td>2</td>
+									<td>120</td>
+								</tr>
+								<tr>
+									<td>80</td>
+									<td>2</td>
+									<td>150</td>
+								</tr>
+								<tr>
+									<td>100</td>
+									<td>3</td>
+									<td>180</td>
+								</tr>
+								<tr>
+									<td>120</td>
+									<td>4</td>
+									<td>210</td>
+								</tr>
+								<tr>
+									<td>150</td>
+									<td>5</td>
+									<td>?</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- K-Means -->
+		<section class="algorithm-section fade-in" id="kmedias">
+			<h2 class="algorithm-title">
+				<i class="bi bi-calculator-fill"></i>K-Medias (K-Means)
+			</h2>
+
+			<div class="row align-items-center">
+				<div class="col-lg-7 order-lg-2">
+					<p class="lead">
+						Agrupa datos en <strong>k clústeres</strong> y calcula la media de
+						cada grupo para imputar valores faltantes:
+					</p>
+
+					<ol class="lead">
+						<li>Agrupar datos por categoría (columna <code>X0</code>)
+						</li>
+						<li>Calcular la <strong>media</strong> de valores conocidos (<code>X2</code>)
+							por grupo
+						</li>
+						<li>Reemplazar valores faltantes con la media del grupo</li>
+					</ol>
+
+					<div class="math-formula">$$ \text{Media} = \frac{\sum
+						\text{valores}}{\text{cantidad}} $$</div>
+
+					<h5 class="mt-4">Ejemplo:</h5>
+					<div class="bg-light p-3 rounded monospace">
+						<pre>Grupo A: 5, 7, 9 ⇒ Media = (5 + 7 + 9) / 3 = 7</pre>
+						<pre>Se imputa ? en A con <span class="valor-imputado">7</span>
+						</pre>
+						<pre>Grupo C: 2, 3, 2, 12 ⇒ Media = (2 + 3 + 2 + 12) / 4 = 4.75</pre>
+						<pre>Se imputan ? en C con <span class="valor-imputado">4.75</span>
+						</pre>
+						<pre>Grupo B: 1, 11 ⇒ Media = (1 + 11) / 2 = 6</pre>
+						<pre>Se imputa ? en B con <span class="valor-imputado">6</span>
+						</pre>
+					</div>
+				</div>
+
+				<div class="col-lg-5 order-lg-1 mt-4 mt-lg-0">
+					<div class="table-responsive">
+						<table class="table data-table">
+							<thead>
+								<tr>
+									<th>X0</th>
+									<th>X2</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>A</td>
+									<td>5</td>
+								</tr>
+								<tr>
+									<td>C</td>
+									<td>2</td>
+								</tr>
+								<tr>
+									<td>C</td>
+									<td>3</td>
+								</tr>
+								<tr>
+									<td>A</td>
+									<td>7</td>
+								</tr>
+								<tr>
+									<td>A</td>
+									<td>9</td>
+								</tr>
+								<tr>
+									<td>C</td>
+									<td>2</td>
+								</tr>
+								<tr>
+									<td>A</td>
+									<td>?</td>
+								</tr>
+								<tr>
+									<td>C</td>
+									<td>?</td>
+								</tr>
+								<tr>
+									<td>B</td>
+									<td>?</td>
+								</tr>
+								<tr>
+									<td>B</td>
+									<td>1</td>
+								</tr>
+								<tr>
+									<td>B</td>
+									<td>11</td>
+								</tr>
+								<tr>
+									<td>C</td>
+									<td>12</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- K-Modes -->
+		<section class="algorithm-section fade-in" id="kmodas">
+			<h2 class="algorithm-title">
+				<i class="bi bi-pie-chart-fill"></i>K-Modas (K-Modes)
+			</h2>
+
+			<div class="row align-items-center">
+				<div class="col-lg-7">
+					<p class="lead">
+						Para datos <strong>categóricos</strong>, agrupa elementos
+						similares y determina la <strong>moda</strong> (valor más
+						frecuente) en cada grupo.
+					</p>
+
+					<ol class="lead">
+						<li>Agrupar datos según <code>Clase</code></li>
+						<li>Identificar la <strong>moda</strong> en <code>X1</code>
+							por grupo
+						</li>
+						<li>Reemplazar <code>?</code> con la moda del grupo
+						</li>
+					</ol>
+
+					<div class="math-formula">$$ \text{Moda} = \text{valor más
+						frecuente en el grupo} $$</div>
+
+					<h5 class="mt-4">Ejemplo:</h5>
+					<div class="bg-light p-3 rounded monospace">
+						<pre>Clase = -: X1 = B, B, A ⇒ Moda = <span
+								class="valor-imputado">B</span>
+						</pre>
+						<pre>Clase = +: X1 = A, A, B, A ⇒ Moda = <span
+								class="valor-imputado">A</span>
+						</pre>
+						<pre>Se imputa ? - con <span class="valor-imputado">B</span>
+						</pre>
+						<pre>Se imputa ? + con <span class="valor-imputado">A</span>
+						</pre>
+					</div>
+				</div>
+
+				<div class="col-lg-5 mt-4 mt-lg-0">
+					<div class="table-responsive">
+						<table class="table data-table">
+							<thead>
+								<tr>
+									<th>X1</th>
+									<th>Clase</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>A</td>
+									<td>+</td>
+								</tr>
+								<tr>
+									<td>B</td>
+									<td>-</td>
+								</tr>
+								<tr>
+									<td>A</td>
+									<td>-</td>
+								</tr>
+								<tr>
+									<td>A</td>
+									<td>+</td>
+								</tr>
+								<tr>
+									<td>B</td>
+									<td>+</td>
+								</tr>
+								<tr>
+									<td>B</td>
+									<td>-</td>
+								</tr>
+								<tr>
+									<td>A</td>
+									<td>+</td>
+								</tr>
+								<tr>
+									<td>?</td>
+									<td>-</td>
+								</tr>
+								<tr>
+									<td>?</td>
+									<td>+</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- Upload Section -->
+	<section class="upload-section fade-in" id="subida">
+		<div class="container">
+			<h2 class="upload-title">¡Resuelve tus problemas de datos ahora!</h2>
+			<p class="lead mb-5">Sube tu archivo y aplica estos algoritmos
+				poderosos a tus propios datos.</p>
+			<a th:href="@{/subir}" class="upload-btn"> <i
+				class="bi bi-upload me-2"></i>Subir archivo y procesar
+			</a>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="container py-5">
+		<div class="row">
+			<div class="col-12 col-md">
+				<i class="bi bi-bar-chart-line-fill fs-2 text-primary"></i> <small
+					class="d-block mb-3 text-muted mt-2">© 2023–2025</small>
+			</div>
+			<div class="col-6 col-md">
+				<h5>Algoritmos</h5>
+				<ul class="list-unstyled text-small">
+					<li><a class="link-secondary" href="#arbol">Árbol de
+							Decisión</a></li>
+					<li><a class="link-secondary" href="#regresion">Regresión</a></li>
+					<li><a class="link-secondary" href="#kmedias">K-Medias</a></li>
+					<li><a class="link-secondary" href="#kmodas">K-Modas</a></li>
+				</ul>
+			</div>
+			<div class="col-6 col-md">
+				<h5>Recursos</h5>
+				<ul class="list-unstyled text-small">
+					<li><a class="link-secondary" href="#">Documentación</a></li>
+					<li><a class="link-secondary" href="#">Ejemplos</a></li>
+					<li><a class="link-secondary" href="#">API</a></li>
+				</ul>
+			</div>
+			<div class="col-6 col-md">
+				<h5>Acerca de</h5>
+				<ul class="list-unstyled text-small">
+					<li><a class="link-secondary" href="#">Equipo</a></li>
+					<li><a class="link-secondary" href="#">Privacidad</a></li>
+					<li><a class="link-secondary" href="#">Términos</a></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Bootstrap JS -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="/js/script.js"></script>
+</body>
+</html>

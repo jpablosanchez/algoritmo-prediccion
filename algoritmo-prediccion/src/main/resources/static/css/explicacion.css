@@ -1,0 +1,78 @@
+@charset "UTF-8";
+/* Estilos para la explicación del algoritmo */
+.algorithm-explanation {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.explanation-header {
+    border-bottom: 2px solid #4e73df;
+    padding-bottom: 1rem;
+}
+
+.explanation-step {
+    background: #f8f9fc;
+    border-radius: 8px;
+    padding: 1.5rem;
+    border-left: 4px solid #4e73df;
+}
+
+.step-title {
+    color: #4e73df;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-color: #4e73df;
+    color: white;
+    border-radius: 50%;
+    margin-right: 10px;
+    font-size: 0.9rem;
+}
+
+.step-content {
+    padding-left: 40px;
+}
+
+.tree-structure {
+    max-height: 300px;
+    overflow-y: auto;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+}
+
+.math-formula {
+    background-color: #f8f9fa;
+    border-left: 4px solid #4e73df;
+    padding: 1rem;
+    border-radius: 0 5px 5px 0;
+    margin: 1rem 0;
+}
+
+/* Mejoras para tablas */
+.table {
+    font-size: 0.9rem;
+}
+
+.table th {
+    background-color: #4e73df;
+    color: white;
+}
+
+/* Mejoras para listas */
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

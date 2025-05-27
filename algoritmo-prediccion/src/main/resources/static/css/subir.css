@@ -1,0 +1,202 @@
+/* Estilos generales */
+:root {
+	--primary-color: #4e73df;
+	--secondary-color: #1cc88a;
+	--accent-color: #f6c23e;
+	--dark-color: #5a5c69;
+	--light-color: #f8f9fc;
+}
+
+body {
+	font-family: 'Poppins', sans-serif !important;
+	color: #333 !important;
+	background-color: #f8f9fc !important;
+	padding-top: 80px !important;
+}
+
+.monospace {
+	font-family: 'Roboto Mono', monospace;
+}
+
+/* Navbar */
+.navbar {
+	box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+	padding: 0.75rem 1rem;
+	background: white !important;
+}
+
+.navbar-brand {
+	font-weight: 600;
+	color: var(--primary-color) !important;
+	font-size: 1.2rem;
+}
+
+/* Upload Section */
+.upload-container {
+	max-width: 800px;
+	margin: 0 auto;
+	background: white;
+	border-radius: 15px;
+	box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+	padding: 2.5rem;
+	margin-top: 2rem;
+	margin-bottom: 3rem;
+}
+
+.upload-title {
+	font-weight: 700;
+	color: var(--primary-color);
+	margin-bottom: 2rem;
+	text-align: center;
+}
+
+/* Drop Zone */
+.drop-zone {
+	border: 2px dashed #d1d3e2;
+	border-radius: 10px;
+	padding: 3rem 1rem;
+	text-align: center;
+	cursor: pointer;
+	transition: all 0.3s;
+	background-color: #f8f9fc;
+	margin-bottom: 1.5rem;
+}
+
+.drop-zone:hover, .drop-zone.hover {
+	border-color: var(--primary-color);
+	background-color: rgba(78, 115, 223, 0.05);
+}
+
+.drop-zone i {
+	font-size: 3rem;
+	color: var(--primary-color);
+	margin-bottom: 1rem;
+}
+
+.file-name {
+	font-weight: 500;
+	margin-top: 1rem;
+	color: var(--dark-color);
+}
+
+/* Algorithm Cards */
+.algorithm-card {
+	border: 1px solid #e3e6f0;
+	border-radius: 10px;
+	padding: 1.5rem;
+	margin-bottom: 1.5rem;
+	transition: all 0.3s;
+}
+
+.algorithm-card:hover {
+	border-color: var(--primary-color);
+	box-shadow: 0 0.15rem 1.5rem 0 rgba(58, 59, 69, 0.1);
+}
+
+.algorithm-card h5 {
+	color: var(--primary-color);
+	font-weight: 600;
+	margin-bottom: 1rem;
+}
+
+.algorithm-card i {
+	font-size: 1.5rem;
+	margin-right: 10px;
+	color: var(--primary-color);
+}
+
+/* Results Section */
+.results-section {
+	background: white;
+	border-radius: 15px;
+	box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+	padding: 2.5rem;
+	margin-top: 2rem;
+}
+
+.results-title {
+	font-weight: 700;
+	color: var(--primary-color);
+	margin-bottom: 1.5rem;
+	border-bottom: 2px solid var(--primary-color);
+	padding-bottom: 0.5rem;
+}
+
+/* Tables */
+.data-table {
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+}
+
+.data-table thead {
+	background-color: var(--primary-color);
+	color: white;
+}
+
+.data-table th {
+	font-weight: 500;
+}
+
+/* Explanation Box */
+.explanation-box {
+	background-color: #f8f9fa;
+	border-left: 4px solid var(--primary-color);
+	padding: 1.5rem;
+	border-radius: 0 8px 8px 0;
+	margin: 1.5rem 0;
+}
+
+/* Buttons */
+.btn-primary {
+	background-color: var(--primary-color);
+	border-color: var(--primary-color);
+	padding: 0.5rem 1.5rem;
+	font-weight: 500;
+}
+
+.btn-outline-primary {
+	color: var(--primary-color);
+	border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+	background-color: var(--primary-color);
+	color: white;
+}
+
+/* Back Button */
+.back-btn {
+	color: var(--dark-color);
+	font-weight: 500;
+	text-decoration: none;
+	transition: all 0.3s;
+}
+
+.back-btn:hover {
+	color: var(--primary-color);
+}
+
+.valor-imputado {
+	font-weight: 600;
+	color: var(--primary-color);
+	background-color: rgba(78, 115, 223, 0.12); 
+	border-radius: 4px;
+	padding: 0.1rem 0.5rem;
+	border: 1px solid rgba(78, 115, 223, 0.3); 
+	transition: all 0.2s ease;
+}
+
+.valor-imputado:hover {
+	background-color: rgba(78, 115, 223, 0.2);
+	/* Más visible al pasar mouse */
+}
+/* Responsive Adjustments */
+@media ( max-width : 768px) {
+	.upload-container {
+		padding: 1.5rem;
+	}
+	.upload-title {
+		font-size: 1.5rem;
+	}
+}
